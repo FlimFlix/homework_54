@@ -1,28 +1,39 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import AddTaskForm from './Components/AddTaskForm/AddTaskForm.js';
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    state = {
+        task: [],
+
+        currentTask: {title: ''}
+    };
+
+    changeTaskInput = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+
+        let currentTask = {
+            ...this.state.currentTask,
+            [name]: value
+        };
+        this.setState({
+            ...this.state,
+            currentTask
+        });
+    };
+
+    render() {
+        return (
+            <div className="App">
+                <div>
+                    <h2>Добавить задачу</h2>
+                    <AddTaskForm task={this.state.currentTask} onChangeInput={this.changeTaskInput}/>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;
