@@ -5,9 +5,8 @@ class Task extends Component {
     render() {
         return (
             <div className="task">
-                <h1 className='h1'>
-                    {this.props.title}
-                </h1>
+                <h1>Задача:{this.props.title}</h1>
+                <p><button onClick={this.props.onRemoveTask}>Удалить</button></p>
             </div>
         )
     }
