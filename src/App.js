@@ -24,12 +24,25 @@ class App extends Component {
         });
     };
 
+    addTask = (event) => {
+      event.preventDefault();
+      let currrentTask = {...this.state.currentTask};
+      const now = new Date();
+      currrentTask.id = now.getTime();
+      let task = [...this.state.task, currrentTask];
+      this.setState({...this.state, task});
+
+    };
+
     render() {
         return (
             <div className="App">
                 <div>
                     <h2>Добавить задачу</h2>
-                    <AddTaskForm task={this.state.currentTask} onChangeInput={this.changeTaskInput}/>
+                    <AddTaskForm task={this.state.currentTask}
+                                 onChangeInput={this.changeTaskInput}
+                                 onAddTask={this.addTask}
+                    />
                 </div>
             </div>
         );
